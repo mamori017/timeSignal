@@ -11,8 +11,13 @@ namespace timeSignal
 
     public partial class Form1 : Form
     {
-        public static int intWaitMin = 59;
-        public Task objTask;
+        private bool blnLangFlg = true;
+        private static int intWaitMin = 59;
+        private Task objTask;
+        private CancellationTokenSource tokenSource = new CancellationTokenSource();
+        private static string strTimeFormatJp = "tt hh時mm分";
+        private static string strDateFormatJp = "yyyy年MM月dd日(dddd)";
+        private static string strTimeFormatEn = "hh:mm tt";
 
         /// <summary>
         /// Form1
@@ -23,7 +28,9 @@ namespace timeSignal
             {
                 InitializeComponent();
 
-                objTask = asyncTimeSignal();
+                languageToolStripMenuItem.Text = "en-US/ja-JP";
+                
+                objTask = asyncTimeSignal(tokenSource.Token, blnLangFlg);
             }
             catch (Exception ex)
             {
@@ -35,7 +42,7 @@ namespace timeSignal
         /// asyncTimeSignal
         /// </summary>
         /// <returns></returns>
-        static async Task asyncTimeSignal()
+        private static async Task asyncTimeSignal(CancellationToken token, bool blnLangFlg)
         {
             int intInitWaitMin = 0;
 
@@ -49,8 +56,22 @@ namespace timeSignal
                     {
                         if (DateTime.Now.Minute.ToString() == "0")
                         {
-                            showNotify();
+                            if(blnLangFlg == true)
+                            {
+                                System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("ja-JP");
+                                showNotify(DateTime.Now.ToString(strTimeFormatJp, ci), DateTime.Now.ToString(strDateFormatJp));
+                            }
+                            else
+                            {
+                                System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
+                                showNotify(DateTime.Now.ToString(strTimeFormatEn, ci), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")");
+                            }
                             Thread.Sleep(intWaitMin * 60 * 1000);
+                        }
+
+                        if (token.IsCancellationRequested)
+                        {
+                            break;
                         }
                     }
                 });
@@ -87,7 +108,7 @@ namespace timeSignal
         /// <summary>
         /// showNotify
         /// </summary>
-        private static void showNotify()
+        private static void showNotify(String strLine_1,string strLine_2)
         {
             try
             {
@@ -99,8 +120,10 @@ namespace timeSignal
                 var toast = new ToastNotification(xml);
 
                 src.InnerText = "file:///" + System.IO.Path.GetFullPath(@"img\icon.png");
-                texts[0].AppendChild(xml.CreateTextNode(DateTime.Now.ToShortTimeString()));
-                texts[1].AppendChild(xml.CreateTextNode(DateTime.Now.DayOfWeek.ToString()));
+
+                texts[0].AppendChild(xml.CreateTextNode(strLine_1));
+                texts[1].AppendChild(xml.CreateTextNode(strLine_2));
+
                 ToastNotificationManager.CreateToastNotifier("Time Signal").Show(toast);
             }
             catch (Exception ex)
@@ -110,6 +133,41 @@ namespace timeSignal
             finally
             {
                 GC.Collect();
+            }
+        }
+
+        /// <summary>
+        /// Language change
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void languageToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Globalization.CultureInfo objInfo = null;
+
+            if (blnLangFlg == true)
+            {
+                blnLangFlg = false;
+
+                objInfo = new System.Globalization.CultureInfo("en-US");
+
+                showNotify("Change en-US", DateTime.Now.ToString(strTimeFormatEn, objInfo) + "\n" +  DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")");
+
+                tokenSource.Cancel();
+
+                objTask = asyncTimeSignal(tokenSource.Token, blnLangFlg);
+            }
+            else
+            {
+                blnLangFlg = true;
+
+                objInfo = new System.Globalization.CultureInfo("ja-JP");
+
+                showNotify("Change ja-JP", DateTime.Now.ToString(strTimeFormatJp, objInfo) + "\n" + DateTime.Now.ToString(strDateFormatJp, objInfo));
+
+                tokenSource.Cancel();
+
+                objTask = asyncTimeSignal(tokenSource.Token, blnLangFlg);
             }
         }
 
@@ -137,6 +195,27 @@ namespace timeSignal
                 {
                     objWriter = null;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Test method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            System.Globalization.CultureInfo objInfo = null;
+
+            if (blnLangFlg == true)
+            {
+                objInfo = new System.Globalization.CultureInfo("ja-JP");
+                showNotify(DateTime.Now.ToString(strTimeFormatJp, objInfo), DateTime.Now.ToString(strDateFormatJp));
+            }
+            else
+            {
+                objInfo = new System.Globalization.CultureInfo("en-US");
+                showNotify(DateTime.Now.ToString(strTimeFormatEn, objInfo), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")");
             }
         }
     }
