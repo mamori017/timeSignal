@@ -29,7 +29,7 @@ namespace timeSignal
                 InitializeComponent();
 
                 languageToolStripMenuItem.Text = "en-US/ja-JP";
-                
+
                 objTask = asyncTimeSignal(tokenSource.Token, blnLangFlg);
             }
             catch (Exception ex)
@@ -66,6 +66,7 @@ namespace timeSignal
                                 System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
                                 showNotify(DateTime.Now.ToString(strTimeFormatEn, ci), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")");
                             }
+
                             Thread.Sleep(intWaitMin * 60 * 1000);
                         }
 
@@ -169,6 +170,7 @@ namespace timeSignal
 
                 objTask = asyncTimeSignal(tokenSource.Token, blnLangFlg);
             }
+
         }
 
         /// <summary>
