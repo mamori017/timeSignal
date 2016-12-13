@@ -1,0 +1,7 @@
+## Travis CI Integration
+
+language: csharp
+solution: timeSignal.sln
+
+script:
+  - xbuild timeSignal.sln
