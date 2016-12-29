@@ -28,6 +28,7 @@ namespace timeSignal
             {
                 InitializeComponent();
 
+                runToolStripMenuItem.Text = "Start/Pause";
                 languageToolStripMenuItem.Text = "en-US/ja-JP";
 
                 objTask = asyncTimeSignal(tokenSource.Token, blnLangFlg);
@@ -59,12 +60,12 @@ namespace timeSignal
                             if(blnLangFlg == true)
                             {
                                 System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("ja-JP");
-                                showNotify(DateTime.Now.ToString(strTimeFormatJp, ci), DateTime.Now.ToString(strDateFormatJp));
+                                showNotify(DateTime.Now.ToString(strTimeFormatJp, ci), DateTime.Now.ToString(strDateFormatJp),true);
                             }
                             else
                             {
                                 System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
-                                showNotify(DateTime.Now.ToString(strTimeFormatEn, ci), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")");
+                                showNotify(DateTime.Now.ToString(strTimeFormatEn, ci), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", true);
                             }
 
                             Thread.Sleep(intWaitMin * 60 * 1000);
@@ -109,7 +110,7 @@ namespace timeSignal
         /// <summary>
         /// showNotify
         /// </summary>
-        private static void showNotify(String strLine_1,string strLine_2)
+        private static void showNotify(String strLine_1,string strLine_2,Boolean blnExeFlg)
         {
             try
             {
@@ -120,12 +121,19 @@ namespace timeSignal
                 var texts = xml.GetElementsByTagName("text");
                 var toast = new ToastNotification(xml);
 
-                src.InnerText = "file:///" + System.IO.Path.GetFullPath(@"img\icon.png");
-
+                if(blnExeFlg == true)
+                {
+                    src.InnerText = "file:///" + Path.GetFullPath(@"img\icon.png");
+                }
+                else
+                {
+                    src.InnerText = "file:///" + Path.GetFullPath(@"img\icon_stop.png");
+                }
+                
                 texts[0].AppendChild(xml.CreateTextNode(strLine_1));
                 texts[1].AppendChild(xml.CreateTextNode(strLine_2));
 
-                ToastNotificationManager.CreateToastNotifier("Time Signal").Show(toast);
+                ToastNotificationManager.CreateToastNotifier("timeSignal").Show(toast);
             }
             catch (Exception ex)
             {
@@ -152,7 +160,7 @@ namespace timeSignal
 
                 objInfo = new System.Globalization.CultureInfo("en-US");
 
-                showNotify("Change en-US", DateTime.Now.ToString(strTimeFormatEn, objInfo) + "\n" +  DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")");
+                showNotify("Change en-US", DateTime.Now.ToString(strTimeFormatEn, objInfo) + "\n" +  DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", true);
 
                 tokenSource.Cancel();
 
@@ -164,7 +172,7 @@ namespace timeSignal
 
                 objInfo = new System.Globalization.CultureInfo("ja-JP");
 
-                showNotify("Change ja-JP", DateTime.Now.ToString(strTimeFormatJp, objInfo) + "\n" + DateTime.Now.ToString(strDateFormatJp, objInfo));
+                showNotify("Change ja-JP", DateTime.Now.ToString(strTimeFormatJp, objInfo) + "\n" + DateTime.Now.ToString(strDateFormatJp, objInfo), true);
 
                 tokenSource.Cancel();
 
@@ -212,12 +220,32 @@ namespace timeSignal
             if (blnLangFlg == true)
             {
                 objInfo = new System.Globalization.CultureInfo("ja-JP");
-                showNotify(DateTime.Now.ToString(strTimeFormatJp, objInfo), DateTime.Now.ToString(strDateFormatJp));
+                showNotify(DateTime.Now.ToString(strTimeFormatJp, objInfo), DateTime.Now.ToString(strDateFormatJp), true);
             }
             else
             {
                 objInfo = new System.Globalization.CultureInfo("en-US");
-                showNotify(DateTime.Now.ToString(strTimeFormatEn, objInfo), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")");
+                showNotify(DateTime.Now.ToString(strTimeFormatEn, objInfo), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", true);
+            }
+        }
+
+        /// <summary>
+        /// Test method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void runToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tokenSource.IsCancellationRequested != true)
+            {
+                tokenSource.Cancel();
+                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(@"img\notify_stop.ico"));
+            }
+            else
+            {
+                tokenSource = new CancellationTokenSource();
+                objTask = asyncTimeSignal(tokenSource.Token, blnLangFlg);
+                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(@"img\notify.ico"));
             }
         }
     }

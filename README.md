@@ -1,6 +1,6 @@
 # timeSignal
 
-[![Build status](https://ci.appveyor.com/api/projects/status/pu8y0wv52s615j4p?svg=true)](https://ci.appveyor.com/project/masahikomori/timesignal)
+[![Build status](https://ci.appveyor.com/api/projects/status/f3743jvuxyxn456i?svg=true)](https://ci.appveyor.com/project/masahikomori/timesignal)
 [![Release](https://img.shields.io/github/release/masahikomori/timeSignal.svg)](https://github.com/masahikomori/timeSignal/releases/latest)
 [![License](https://img.shields.io/github/license/masahikomori/timeSignal.svg)](https://github.com/masahikomori/timeSignal/blob/master/LICENSE)
 
