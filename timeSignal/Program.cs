@@ -1,8 +1,6 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace timeSignal
@@ -18,7 +16,25 @@ namespace timeSignal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             new Form1();
-            Application.Run();
+            checkMultiple();
         }
+
+        /// <summary>
+        /// Multiple start check
+        /// </summary>
+        static void checkMultiple()
+        {
+            Mutex objMutex = new System.Threading.Mutex(false, Application.ProductName);
+
+            if (objMutex.WaitOne(0, false))
+            {
+                Application.Run();
+            }
+
+            GC.KeepAlive(objMutex);
+
+            objMutex.Close();
+        }
+
     }
 }
