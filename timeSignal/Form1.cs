@@ -209,28 +209,7 @@ namespace timeSignal
         }
 
         /// <summary>
-        /// Test method
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            System.Globalization.CultureInfo objInfo = null;
-
-            if (blnLangFlg == true)
-            {
-                objInfo = new System.Globalization.CultureInfo("ja-JP");
-                showNotify(DateTime.Now.ToString(strTimeFormatJp, objInfo), DateTime.Now.ToString(strDateFormatJp), true);
-            }
-            else
-            {
-                objInfo = new System.Globalization.CultureInfo("en-US");
-                showNotify(DateTime.Now.ToString(strTimeFormatEn, objInfo), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", true);
-            }
-        }
-
-        /// <summary>
-        /// Test method
+        /// interrupt/resume
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -248,5 +227,26 @@ namespace timeSignal
                 notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(@"img\notify.ico"));
             }
         }
+
+        /// <summary>
+        /// Test method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        //{
+        //    System.Globalization.CultureInfo objInfo = null;
+
+        //    if (blnLangFlg == true)
+        //    {
+        //        objInfo = new System.Globalization.CultureInfo("ja-JP");
+        //        showNotify(DateTime.Now.ToString(strTimeFormatJp, objInfo), DateTime.Now.ToString(strDateFormatJp), true);
+        //    }
+        //    else
+        //    {
+        //        objInfo = new System.Globalization.CultureInfo("en-US");
+        //        showNotify(DateTime.Now.ToString(strTimeFormatEn, objInfo), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", true);
+        //    }
+        //}
     }
 }
