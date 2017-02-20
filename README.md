@@ -1,8 +1,8 @@
 # timeSignal
 
-[![Build status](https://ci.appveyor.com/api/projects/status/f3743jvuxyxn456i?svg=true)](https://ci.appveyor.com/project/masahikomori/timesignal)
-[![Release](https://img.shields.io/github/release/masahikomori/timeSignal.svg)](https://github.com/masahikomori/timeSignal/releases/latest)
-[![License](https://img.shields.io/github/license/masahikomori/timeSignal.svg)](https://github.com/masahikomori/timeSignal/blob/master/LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/y190ay52pa2a3lpx?svg=true)](https://ci.appveyor.com/project/mamori017/timesignal)
+[![Release](https://img.shields.io/github/release/mamori017/timeSignal.svg)](https://github.com/mamori017/timeSignal/releases/latest)
+[![License](https://img.shields.io/github/license/mamori017/timeSignal.svg)](https://github.com/mamori017/timeSignal/blob/master/LICENSE)
 
 ![timesignal](https://cloud.githubusercontent.com/assets/7507701/21547039/e333e724-ce26-11e6-8014-26aa8ad90928.png)
 
@@ -37,8 +37,8 @@ To end the program, select "Close".
 
 ## Licence
 
-[MIT](https://github.com/masahikomori/timeSignal/blob/master/LICENSE)
+[MIT](https://github.com/mamori017/timeSignal/blob/master/LICENSE)
 
 ## Author
 
-[masahikomori](https://github.com/masahikomori)
+[Masahiko Mori](https://github.com/mamori017)
