@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Common
 {
-    class Log
+    public static class Log
     {
         /// <summary>
-        /// outputErrLog
+        /// ExceptionOutput
         /// </summary>
         public static void ExceptionOutput(Exception ex, String path)
         {

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.IO;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Windows.UI.Notifications;
+using Common;
 
 namespace timeSignal
 {
@@ -21,25 +22,29 @@ namespace timeSignal
         {
             try
             {
+                // Initialize
                 InitializeComponent();
 
-                runToolStripMenuItem.Text = "Start/Pause";
-                languageToolStripMenuItem.Text = "en-US/ja-JP";
+                // ContextToolStrip setting
+                runToolStripMenuItem.Text = Define.RunToolStripMenuItem;
+                languageToolStripMenuItem.Text = Define.LanguageToolStripMenuItem;
 
+                // Start
                 objTask = AsyncTimeSignal(tokenSource.Token, blnLangFlg);
             }
             catch (Exception ex)
             {
-                Common.Log.ExceptionOutput(ex,Common.Define.ErrLogPath);
+                ExceptionProcess(ex);
             }
         }
 
         /// <summary>
-        /// asyncTimeSignal
+        /// AsyncTimeSignal
         /// </summary>
         /// <returns></returns>
         private static async Task AsyncTimeSignal(CancellationToken token, bool blnLangFlg)
         {
+            CultureInfo ci = null;
             int intInitWaitMin = 0;
 
             try
@@ -54,13 +59,17 @@ namespace timeSignal
                         {
                             if(blnLangFlg == true)
                             {
-                                System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("ja-JP");
-                                ShowNotify(DateTime.Now.ToString(Common.Define.TimeFormatJp, ci), DateTime.Now.ToString(Common.Define.DateFormatJp),true);
+                                ci = new CultureInfo(Define.CultureInfoJp);
+                                Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatJp, ci),
+                                                        DateTime.Now.ToString(Define.DateFormatJp),
+                                                        true);
                             }
                             else
                             {
-                                System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("en-US");
-                                ShowNotify(DateTime.Now.ToString(Common.Define.TimeFormatEn, ci), DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", true);
+                                ci = new CultureInfo(Define.CultureInfoEn);
+                                Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatEn, ci),
+                                                        DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")",
+                                                        true);
                             }
 
                             Thread.Sleep(intWaitMin * 60 * 1000);
@@ -75,7 +84,7 @@ namespace timeSignal
             }
             catch (Exception ex)
             {
-                Common.Log.ExceptionOutput(ex, Common.Define.ErrLogPath);
+                ExceptionProcess(ex);
             }
         }
 
@@ -98,48 +107,10 @@ namespace timeSignal
             }
             catch (Exception ex)
             {
-                Common.Log.ExceptionOutput(ex, Common.Define.ErrLogPath);
+                ExceptionProcess(ex);
             }
         }
 
-        /// <summary>
-        /// showNotify
-        /// </summary>
-        private static void ShowNotify(String strLine_1,string strLine_2,Boolean blnExeFlg)
-        {
-            try
-            {
-                var tmpl = ToastTemplateType.ToastImageAndText02;
-                var xml = ToastNotificationManager.GetTemplateContent(tmpl);
-//                var images = xml.GetElementsByTagName("image");
-//                var src = images[0].Attributes.GetNamedItem("src");
-                var texts = xml.GetElementsByTagName("text");
-                var toast = new ToastNotification(xml);
-
-                //if(blnExeFlg == true)
-                //{
-                //    src.InnerText = "file:///" + Path.GetFullPath(Common.Define.NotifyIconPath);
-                //}
-                //else
-                //{
-                //    src.InnerText = "file:///" + Path.GetFullPath(Common.Define.NotifyStopIconPath);
-                //}
-                
-                texts[0].AppendChild(xml.CreateTextNode(strLine_1));
-                texts[1].AppendChild(xml.CreateTextNode(strLine_2));
-
-                var notify = ToastNotificationManager.CreateToastNotifier("timeSignal");
-                notify.Show(new ToastNotification(xml));
-            }
-            catch (Exception ex)
-            {
-                Common.Log.ExceptionOutput(ex, Common.Define.ErrLogPath);
-            }
-            finally
-            {
-                GC.Collect();
-            }
-        }
 
         /// <summary>
         /// Language change
@@ -148,33 +119,40 @@ namespace timeSignal
         /// <param name="e"></param>
         private void LanguageToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Globalization.CultureInfo objInfo = null;
+            CultureInfo objInfo = null;
 
             if (blnLangFlg == true)
             {
                 blnLangFlg = false;
-
-                objInfo = new System.Globalization.CultureInfo("en-US");
-
-                ShowNotify("Change en-US", DateTime.Now.ToString(Common.Define.TimeFormatEn, objInfo) + "\n" +  DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", true);
-
-                tokenSource.Cancel();
-
-                objTask = AsyncTimeSignal(tokenSource.Token, blnLangFlg);
+                objInfo = new CultureInfo(Define.CultureInfoEn);
+                Notification.ShowNotify("Change " + Define.CultureInfoEn, 
+                                        DateTime.Now.ToString(Define.TimeFormatEn, objInfo) + "\n" +
+                                        DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", 
+                                        true);
             }
             else
             {
                 blnLangFlg = true;
-
-                objInfo = new System.Globalization.CultureInfo("ja-JP");
-
-                ShowNotify("Change ja-JP", DateTime.Now.ToString(Common.Define.TimeFormatJp, objInfo) + "\n" + DateTime.Now.ToString(Common.Define.DateFormatJp, objInfo), true);
-
-                tokenSource.Cancel();
-
-                objTask = AsyncTimeSignal(tokenSource.Token, blnLangFlg);
+                objInfo = new CultureInfo(Define.CultureInfoJp);
+                Notification.ShowNotify("Change " + Define.CultureInfoJp, 
+                                        DateTime.Now.ToString(Define.TimeFormatJp, objInfo) + "\n" +
+                                        DateTime.Now.ToString(Define.DateFormatJp, objInfo), 
+                                        true);
             }
 
+            tokenSource.Cancel();
+
+            objTask = AsyncTimeSignal(tokenSource.Token, blnLangFlg);
+
+        }
+
+        /// <summary>
+        /// Exception process
+        /// </summary>
+        /// <param name="ex"></param>
+        private static void ExceptionProcess(Exception ex)
+        {
+            Log.ExceptionOutput(ex, Define.ErrLogPath);
         }
 
         /// <summary>
@@ -187,20 +165,25 @@ namespace timeSignal
             if (tokenSource.IsCancellationRequested != true)
             {
                 tokenSource.Cancel();
-                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(Common.Define.NotifyStopIconPath));
+                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(Define.NotifyStopIconPath));
             }
             else
             {
                 tokenSource = new CancellationTokenSource();
                 objTask = AsyncTimeSignal(tokenSource.Token, blnLangFlg);
-                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(Common.Define.NotifyStopIconPath));
+                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(Define.NotifyStopIconPath));
             }
         }
 
+        /// <summary>
+        /// Test Method
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            System.Globalization.CultureInfo ci = new System.Globalization.CultureInfo("ja-JP");
-            ShowNotify(DateTime.Now.ToString(Common.Define.TimeFormatJp, ci), DateTime.Now.ToString(Common.Define.DateFormatJp), true);
+            CultureInfo ci = new CultureInfo(Define.CultureInfoJp);
+            Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatJp, ci), DateTime.Now.ToString(Define.DateFormatJp), true);
         }
     }
 }
