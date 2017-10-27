@@ -7,7 +7,7 @@ namespace Common
     public static class Notification
     {
         /// <summary>
-        /// showNotify
+        /// ShowNotify
         /// </summary>
         public static void ShowNotify(String strLine_1, string strLine_2, Boolean blnExeFlg)
         {

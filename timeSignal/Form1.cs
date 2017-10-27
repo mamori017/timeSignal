@@ -14,7 +14,8 @@ namespace timeSignal
         private static int intWaitMin = 59;
         private Task objTask;
         private CancellationTokenSource tokenSource = new CancellationTokenSource();
-  
+
+        #region "Process"
         /// <summary>
         /// Form1
         /// </summary>
@@ -87,31 +88,20 @@ namespace timeSignal
                 ExceptionProcess(ex);
             }
         }
+        #endregion
 
+        #region "Common Process"
         /// <summary>
-        /// Close
+        /// Exception process
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EndToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <param name="ex"></param>
+        private static void ExceptionProcess(Exception ex)
         {
-            try
-            {
-                if (objTask != null)
-                {
-                    objTask = null;
-                }
-
-                notifyIcon1.Visible = false;
-                Application.Exit();
-            }
-            catch (Exception ex)
-            {
-                ExceptionProcess(ex);
-            }
+            Log.ExceptionOutput(ex, Define.ErrLogPath);
         }
+        #endregion
 
-
+        #region "ToolStripItem Event"
         /// <summary>
         /// Language change
         /// </summary>
@@ -125,18 +115,18 @@ namespace timeSignal
             {
                 blnLangFlg = false;
                 objInfo = new CultureInfo(Define.CultureInfoEn);
-                Notification.ShowNotify("Change " + Define.CultureInfoEn, 
+                Notification.ShowNotify("Change " + Define.CultureInfoEn,
                                         DateTime.Now.ToString(Define.TimeFormatEn, objInfo) + "\n" +
-                                        DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")", 
+                                        DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")",
                                         true);
             }
             else
             {
                 blnLangFlg = true;
                 objInfo = new CultureInfo(Define.CultureInfoJp);
-                Notification.ShowNotify("Change " + Define.CultureInfoJp, 
+                Notification.ShowNotify("Change " + Define.CultureInfoJp,
                                         DateTime.Now.ToString(Define.TimeFormatJp, objInfo) + "\n" +
-                                        DateTime.Now.ToString(Define.DateFormatJp, objInfo), 
+                                        DateTime.Now.ToString(Define.DateFormatJp, objInfo),
                                         true);
             }
 
@@ -144,15 +134,6 @@ namespace timeSignal
 
             objTask = AsyncTimeSignal(tokenSource.Token, blnLangFlg);
 
-        }
-
-        /// <summary>
-        /// Exception process
-        /// </summary>
-        /// <param name="ex"></param>
-        private static void ExceptionProcess(Exception ex)
-        {
-            Log.ExceptionOutput(ex, Define.ErrLogPath);
         }
 
         /// <summary>
@@ -176,6 +157,31 @@ namespace timeSignal
         }
 
         /// <summary>
+        /// Close
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EndToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (objTask != null)
+                {
+                    objTask = null;
+                }
+
+                notifyIcon1.Visible = false;
+                Application.Exit();
+            }
+            catch (Exception ex)
+            {
+                ExceptionProcess(ex);
+            }
+        }
+        #endregion
+
+        #region "Test Method"
+        /// <summary>
         /// Test Method
         /// </summary>
         /// <param name="sender"></param>
@@ -185,5 +191,6 @@ namespace timeSignal
             CultureInfo ci = new CultureInfo(Define.CultureInfoJp);
             Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatJp, ci), DateTime.Now.ToString(Define.DateFormatJp), true);
         }
+        #endregion
     }
 }
