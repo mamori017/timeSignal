@@ -188,8 +188,8 @@ namespace timeSignal
         /// <param name="e"></param>
         private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            CultureInfo ci = new CultureInfo(Define.CultureInfoJp);
-            Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatJp, ci), DateTime.Now.ToString(Define.DateFormatJp), true);
+        //    CultureInfo ci = new CultureInfo(Define.CultureInfoJp);
+        //    Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatJp, ci), DateTime.Now.ToString(Define.DateFormatJp), true);
         }
         #endregion
     }
