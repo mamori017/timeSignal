@@ -39,6 +39,11 @@ namespace timeSignal
             }
         }
 
+        public void Dispose()
+        {
+            this.tokenSource.Dispose();
+        }
+
         /// <summary>
         /// AsyncTimeSignal
         /// </summary>
@@ -170,7 +175,6 @@ namespace timeSignal
             try
             {
                 objTask = null;
-                tokenSource.Dispose();
                 notifyIcon1.Visible = false;
                 Application.Exit();
             }
