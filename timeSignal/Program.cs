@@ -15,24 +15,7 @@ namespace timeSignal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             new Form1();
-            CheckMultiple();
-        }
-
-        /// <summary>
-        /// Multiple start check
-        /// </summary>
-        static void CheckMultiple()
-        {
-            Mutex objMutex = new System.Threading.Mutex(false, Application.ProductName);
-
-            if (objMutex.WaitOne(0, false))
-            {
-                Application.Run();
-            }
-
-            GC.KeepAlive(objMutex);
-
-            objMutex.Close();
+            Common.Process.CheckMultiple(Application.ProductName);
         }
     }
 }

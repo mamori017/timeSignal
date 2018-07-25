@@ -27,8 +27,8 @@ namespace timeSignal
                 InitializeComponent();
 
                 // ContextToolStrip setting
-                runToolStripMenuItem.Text = Define.RunToolStripMenuItem;
-                languageToolStripMenuItem.Text = Define.LanguageToolStripMenuItem;
+                runToolStripMenuItem.Text = Properties.Settings.Default.RunToolStripMenuItem;
+                languageToolStripMenuItem.Text = Properties.Settings.Default.LanguageToolStripMenuItem;
 
                 // Start
                 objTask = AsyncTimeSignal(tokenSource.Token, blnLangFlg);
@@ -60,17 +60,19 @@ namespace timeSignal
                         {
                             if(blnLangFlg == true)
                             {
-                                ci = new CultureInfo(Define.CultureInfoJp);
-                                Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatJp, ci),
-                                                        DateTime.Now.ToString(Define.DateFormatJp),
-                                                        true);
+                                ci = new CultureInfo(Properties.Settings.Default.CultureInfoJp);
+                                Notification.ShowNotify(DateTime.Now.ToString(Properties.Settings.Default.TimeFormatJp, ci),
+                                                        DateTime.Now.ToString(Properties.Settings.Default.DateFormatJp),
+                                                        Properties.Settings.Default.NotificationAppID,
+                                                        Properties.Settings.Default.NotifyIconPath);
                             }
                             else
                             {
-                                ci = new CultureInfo(Define.CultureInfoEn);
-                                Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatEn, ci),
+                                ci = new CultureInfo(Properties.Settings.Default.CultureInfoEn);
+                                Notification.ShowNotify(DateTime.Now.ToString(Properties.Settings.Default.TimeFormatEn, ci),
                                                         DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")",
-                                                        true);
+                                                        Properties.Settings.Default.NotificationAppID,
+                                                        Properties.Settings.Default.NotifyIconPath);
                             }
 
                             Thread.Sleep(intWaitMin * 60 * 1000);
@@ -97,7 +99,7 @@ namespace timeSignal
         /// <param name="ex"></param>
         private static void ExceptionProcess(Exception ex)
         {
-            Log.ExceptionOutput(ex, Define.ErrLogPath);
+            Log.ExceptionOutput(ex, Properties.Settings.Default.ErrLogPath, Properties.Settings.Default.ErrLogFileName);
         }
         #endregion
 
@@ -114,20 +116,22 @@ namespace timeSignal
             if (blnLangFlg == true)
             {
                 blnLangFlg = false;
-                objInfo = new CultureInfo(Define.CultureInfoEn);
-                Notification.ShowNotify("Change " + Define.CultureInfoEn,
-                                        DateTime.Now.ToString(Define.TimeFormatEn, objInfo) + "\n" +
+                objInfo = new CultureInfo(Properties.Settings.Default.CultureInfoEn);
+                Notification.ShowNotify("Change " + Properties.Settings.Default.CultureInfoEn,
+                                        DateTime.Now.ToString(Properties.Settings.Default.TimeFormatEn, objInfo) + "\n" +
                                         DateTime.Now.ToShortDateString() + "(" + DateTime.Now.DayOfWeek.ToString() + ")",
-                                        true);
+                                        Properties.Settings.Default.NotificationAppID,
+                                        Properties.Settings.Default.NotifyIconPath);
             }
             else
             {
                 blnLangFlg = true;
-                objInfo = new CultureInfo(Define.CultureInfoJp);
-                Notification.ShowNotify("Change " + Define.CultureInfoJp,
-                                        DateTime.Now.ToString(Define.TimeFormatJp, objInfo) + "\n" +
-                                        DateTime.Now.ToString(Define.DateFormatJp, objInfo),
-                                        true);
+                objInfo = new CultureInfo(Properties.Settings.Default.CultureInfoJp);
+                Notification.ShowNotify("Change " + Properties.Settings.Default.CultureInfoJp,
+                                        DateTime.Now.ToString(Properties.Settings.Default.TimeFormatJp, objInfo) + "\n" +
+                                        DateTime.Now.ToString(Properties.Settings.Default.DateFormatJp, objInfo),
+                                        Properties.Settings.Default.NotificationAppID,
+                                        Properties.Settings.Default.NotifyIconPath);
             }
 
             tokenSource.Cancel();
@@ -146,13 +150,13 @@ namespace timeSignal
             if (tokenSource.IsCancellationRequested != true)
             {
                 tokenSource.Cancel();
-                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(Define.NotifyStopIconPath));
+                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(Properties.Settings.Default.NotifyStopIconPath));
             }
             else
             {
                 tokenSource = new CancellationTokenSource();
                 objTask = AsyncTimeSignal(tokenSource.Token, blnLangFlg);
-                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(Define.NotifyStopIconPath));
+                notifyIcon1.Icon = new System.Drawing.Icon(Path.GetFullPath(Properties.Settings.Default.NotifyStopIconPath));
             }
         }
 
@@ -186,10 +190,13 @@ namespace timeSignal
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            CultureInfo ci = new CultureInfo(Define.CultureInfoJp);
-            Notification.ShowNotify(DateTime.Now.ToString(Define.TimeFormatJp, ci), DateTime.Now.ToString(Define.DateFormatJp), true);
+            CultureInfo ci = new CultureInfo(Properties.Settings.Default.CultureInfoJp);
+            Notification.ShowNotify(DateTime.Now.ToString(Properties.Settings.Default.TimeFormatJp, ci),
+                                    DateTime.Now.ToString(Properties.Settings.Default.DateFormatJp),
+                                    Properties.Settings.Default.NotificationAppID,
+                                    Properties.Settings.Default.NotifyIconPath);
         }
         #endregion
     }

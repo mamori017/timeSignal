@@ -1,7 +1,42 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="timeSignal.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="ErrLogPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\Log</Value>
+    </Setting>
+    <Setting Name="CultureInfoJp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ja-JP</Value>
+    </Setting>
+    <Setting Name="TimeFormatJp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">tt hh時mm分</Value>
+    </Setting>
+    <Setting Name="DateFormatJp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">yyyy年MM月dd日(dddd)</Value>
+    </Setting>
+    <Setting Name="CultureInfoEn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en-US</Value>
+    </Setting>
+    <Setting Name="TimeFormatEn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">hh:mm tt</Value>
+    </Setting>
+    <Setting Name="NotifyIconPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\img\notify.ico</Value>
+    </Setting>
+    <Setting Name="NotifyStopIconPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\img\notify_stop.ico</Value>
+    </Setting>
+    <Setting Name="RunToolStripMenuItem" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Start/Pause</Value>
+    </Setting>
+    <Setting Name="LanguageToolStripMenuItem" Type="System.String" Scope="User">
+      <Value Profile="(Default)">en-US/ja-JP</Value>
+    </Setting>
+    <Setting Name="NotificationAppID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27}\WindowsPowerShell\v1.0\powershell.exe</Value>
+    </Setting>
+    <Setting Name="ErrLogFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Error.log</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
