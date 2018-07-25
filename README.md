@@ -1,6 +1,10 @@
 # timeSignal
 
 [![Build status](https://ci.appveyor.com/api/projects/status/y190ay52pa2a3lpx?svg=true)](https://ci.appveyor.com/project/mamori017/timesignal)
+[![codecov](https://codecov.io/gh/mamori017/timeSignal/branch/master/graph/badge.svg)](https://codecov.io/gh/mamori017/timeSignal)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2308f055f9ab457db54288c1c35486fb)](https://www.codacy.com/app/mamori017/timeSignal?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mamori017/timeSignal&amp;utm_campaign=Badge_Grade)
+![GitHub last commit](https://img.shields.io/github/last-commit/mamori017/timeSignal.svg)
+![GitHub tag](https://img.shields.io/github/tag/mamori017/timeSignal.svg)
 [![Release](https://img.shields.io/github/release/mamori017/timeSignal.svg)](https://github.com/mamori017/timeSignal/releases/latest)
 [![License](https://img.shields.io/github/license/mamori017/timeSignal.svg)](https://github.com/mamori017/timeSignal/blob/master/LICENSE)
 
@@ -41,4 +45,4 @@ To end the program, select "Close".
 
 ## Author
 
-[Masahiko Mori](https://github.com/mamori017)
+[mamori017](https://github.com/mamori017)

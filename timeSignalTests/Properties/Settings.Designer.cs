@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace timeSignal.Properties {
+namespace timeSignalTests.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -25,121 +25,97 @@ namespace timeSignal.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\IOTest")]
+        public string IODirectoryPath {
+            get {
+                return ((string)(this["IODirectoryPath"]));
+            }
+            set {
+                this["IODirectoryPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\IOTest")]
+        public string IOFilePath {
+            get {
+                return ((string)(this["IOFilePath"]));
+            }
+            set {
+                this["IOFilePath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("IOTest.txt")]
+        public string IOFileName {
+            get {
+                return ((string)(this["IOFileName"]));
+            }
+            set {
+                this["IOFileName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\IOTest\\")]
+        public string IODirectoryPathExt {
+            get {
+                return ((string)(this["IODirectoryPathExt"]));
+            }
+            set {
+                this["IODirectoryPathExt"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(".\\Log")]
-        public string ErrLogPath {
+        public string LogFilePath {
             get {
-                return ((string)(this["ErrLogPath"]));
+                return ((string)(this["LogFilePath"]));
             }
             set {
-                this["ErrLogPath"] = value;
+                this["LogFilePath"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ja-JP")]
-        public string CultureInfoJp {
+        [global::System.Configuration.DefaultSettingValueAttribute("LogTest.log")]
+        public string LogFileName {
             get {
-                return ((string)(this["CultureInfoJp"]));
+                return ((string)(this["LogFileName"]));
             }
             set {
-                this["CultureInfoJp"] = value;
+                this["LogFileName"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("tt hh時mm分")]
-        public string TimeFormatJp {
+        [global::System.Configuration.DefaultSettingValueAttribute(".\\ExTest")]
+        public string ExFilePath {
             get {
-                return ((string)(this["TimeFormatJp"]));
+                return ((string)(this["ExFilePath"]));
             }
             set {
-                this["TimeFormatJp"] = value;
+                this["ExFilePath"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("yyyy年MM月dd日(dddd)")]
-        public string DateFormatJp {
+        [global::System.Configuration.DefaultSettingValueAttribute("ErrorTest.log")]
+        public string ExFileName {
             get {
-                return ((string)(this["DateFormatJp"]));
+                return ((string)(this["ExFileName"]));
             }
             set {
-                this["DateFormatJp"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en-US")]
-        public string CultureInfoEn {
-            get {
-                return ((string)(this["CultureInfoEn"]));
-            }
-            set {
-                this["CultureInfoEn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("hh:mm tt")]
-        public string TimeFormatEn {
-            get {
-                return ((string)(this["TimeFormatEn"]));
-            }
-            set {
-                this["TimeFormatEn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".\\img\\notify.ico")]
-        public string NotifyIconPath {
-            get {
-                return ((string)(this["NotifyIconPath"]));
-            }
-            set {
-                this["NotifyIconPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".\\img\\notify_stop.ico")]
-        public string NotifyStopIconPath {
-            get {
-                return ((string)(this["NotifyStopIconPath"]));
-            }
-            set {
-                this["NotifyStopIconPath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Start/Pause")]
-        public string RunToolStripMenuItem {
-            get {
-                return ((string)(this["RunToolStripMenuItem"]));
-            }
-            set {
-                this["RunToolStripMenuItem"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("en-US/ja-JP")]
-        public string LanguageToolStripMenuItem {
-            get {
-                return ((string)(this["LanguageToolStripMenuItem"]));
-            }
-            set {
-                this["LanguageToolStripMenuItem"] = value;
+                this["ExFileName"] = value;
             }
         }
         
@@ -157,13 +133,13 @@ namespace timeSignal.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Error.log")]
-        public string ErrLogFileName {
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\img\\favicon.ico")]
+        public string NotificationIconPath {
             get {
-                return ((string)(this["ErrLogFileName"]));
+                return ((string)(this["NotificationIconPath"]));
             }
             set {
-                this["ErrLogFileName"] = value;
+                this["NotificationIconPath"] = value;
             }
         }
     }

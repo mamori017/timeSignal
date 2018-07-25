@@ -1,35 +1,35 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 
 namespace Common
 {
     public static class Log
     {
         /// <summary>
+        /// Output
+        /// </summary>
+        public static void Output(String outputDetail, String filePath, String fileName)
+        {
+            if (IO.DirectoryCheck(filePath, true))
+            {
+                IO.CreateTextFile(filePath, fileName, outputDetail, true, IO.EncodeType.utf8);
+            }
+        }
+
+        /// <summary>
         /// ExceptionOutput
         /// </summary>
-        public static void ExceptionOutput(Exception ex, String path)
+        public static void ExceptionOutput(Exception ex, String filePath, String fileName)
         {
-            Encoding objEncoding = new UTF8Encoding(false);
-            StreamWriter objWriter = new StreamWriter(path, true, objEncoding);
+            String outputDetail = "";
 
-            try
-            {
-                objWriter.WriteLine(ex);
-                objWriter.Close();
-            }
-            finally
-            {
-                if (objEncoding != null)
-                {
-                    objEncoding = null;
-                }
+            outputDetail = ex.Message + "\n" + 
+                           ex.InnerException + "\n" + 
+                           ex.StackTrace + "\n" + 
+                           ex.Source + "\n";
 
-                if (objWriter != null)
-                {
-                    objWriter = null;
-                }
+            if (IO.DirectoryCheck(filePath, true))
+            {
+                IO.CreateTextFile(filePath, fileName, outputDetail, true, IO.EncodeType.utf8);
             }
         }
     }
