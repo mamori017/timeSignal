@@ -46,4 +46,4 @@ To end the program, select "Close".
 
 ## Author
 
-[Masahiko Mori](https://github.com/mamori017)
+[mamori017](https://github.com/mamori017)
