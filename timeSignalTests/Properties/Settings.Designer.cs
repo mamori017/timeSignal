@@ -118,5 +118,29 @@ namespace timeSignalTests.Properties {
                 this["ExFileName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27}\\WindowsPowerShell\\v1.0\\powershell.exe")]
+        public string NotificationAppID {
+            get {
+                return ((string)(this["NotificationAppID"]));
+            }
+            set {
+                this["NotificationAppID"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\img\\favicon.ico")]
+        public string NotificationIconPath {
+            get {
+                return ((string)(this["NotificationIconPath"]));
+            }
+            set {
+                this["NotificationIconPath"] = value;
+            }
+        }
     }
 }

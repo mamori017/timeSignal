@@ -26,5 +26,11 @@
     <Setting Name="ExFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">ErrorTest.log</Value>
     </Setting>
+    <Setting Name="NotificationAppID" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{D65231B0-B2F1-4857-A4CE-A8E7C6EA7D27}\WindowsPowerShell\v1.0\powershell.exe</Value>
+    </Setting>
+    <Setting Name="NotificationIconPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\img\favicon.ico</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

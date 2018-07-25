@@ -99,20 +99,24 @@ namespace Common.Tests
                   false,
                   IO.EncodeType.sjis));
 
+            Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath + "\\",
+                  Settings.Default.IOFileName,
+                  "test",
+                  true,
+                  IO.EncodeType.utf8));
+
             Assert.AreEqual(true, IO.CreateTextFile(Settings.Default.IOFilePath,
                               Settings.Default.IOFileName,
                               "test",
                               true,
                               IO.EncodeType.utf8));
 
-
-
             StreamReader reader = new StreamReader(Settings.Default.IOFilePath + "\\" +
                                                    Settings.Default.IOFileName);
 
             String a = reader.ReadToEnd();
 
-            Assert.AreEqual(a, "testtest");
+            Assert.AreEqual(a, "testtesttest");
 
             reader.Close();
 
