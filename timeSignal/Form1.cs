@@ -39,7 +39,7 @@ namespace timeSignal
             }
         }
 
-        public void Dispose()
+        public new void Dispose()
         {
             this.tokenSource.Dispose();
         }

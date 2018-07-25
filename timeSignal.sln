@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2035
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timeSignal", "timeSignal\timeSignal.csproj", "{AF581C0F-48DD-43BF-A13C-3941FD484A63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "timeSignalTests", "timeSignalTests\timeSignalTests.csproj", "{C6B2C504-3731-4F81-B4DB-A8844C0C8654}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{AF581C0F-48DD-43BF-A13C-3941FD484A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF581C0F-48DD-43BF-A13C-3941FD484A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF581C0F-48DD-43BF-A13C-3941FD484A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6B2C504-3731-4F81-B4DB-A8844C0C8654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6B2C504-3731-4F81-B4DB-A8844C0C8654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6B2C504-3731-4F81-B4DB-A8844C0C8654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6B2C504-3731-4F81-B4DB-A8844C0C8654}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {994DDAC8-0981-4B3D-9825-FF3FA901B6D9}
 	EndGlobalSection
 EndGlobal

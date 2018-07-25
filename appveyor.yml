@@ -1,3 +1,14 @@
 version: 0.0.{build}
+skip_tags: true
 build:
+  project: timeSignal.sln
   verbosity: minimal
+image: Visual Studio 2015
+configuration: Debug
+before_build:
+  nuget restore timeSignal.sln
+after_test: 
+    - OpenCover.Console.exe -register:user -target:"C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\MSTest.exe" -targetargs:"/noresults /noisolation /testcontainer:""timeSignalTests.dll" -targetdir:".\timeSignalTests\bin\Debug" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -filter:"+[*]* -[timeSignalTests*]*" -excludebyfile:*\*Designer.cs -output:.\coverage.xml"
+    - "SET PATH=C:\\Python34;C:\\Python34\\Scripts;%PATH%"
+    - pip install codecov
+    - codecov -f ".\coverage.xml"	

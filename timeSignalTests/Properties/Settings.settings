@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="timeSignalTests.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="IODirectoryPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\IOTest</Value>
+    </Setting>
+    <Setting Name="IOFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\IOTest</Value>
+    </Setting>
+    <Setting Name="IOFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">IOTest.txt</Value>
+    </Setting>
+    <Setting Name="IODirectoryPathExt" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\IOTest\</Value>
+    </Setting>
+    <Setting Name="LogFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\Log</Value>
+    </Setting>
+    <Setting Name="LogFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LogTest.log</Value>
+    </Setting>
+    <Setting Name="ExFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.\ExTest</Value>
+    </Setting>
+    <Setting Name="ExFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ErrorTest.log</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
