@@ -86,19 +86,12 @@ namespace Common
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
             finally
             {
-                if (objEncoding != null)
-                {
                     objEncoding = null;
-                }
-
-                if (objWriter != null)
-                {
                     objWriter = null;
-                }
             }
         }
 

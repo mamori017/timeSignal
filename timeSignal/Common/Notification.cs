@@ -30,7 +30,7 @@ namespace Common
 
                 notify.Show(new ToastNotification(xml));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 throw;
             }
