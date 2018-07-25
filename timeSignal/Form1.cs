@@ -8,7 +8,7 @@ using Common;
 
 namespace timeSignal
 {
-    public partial class Form1 : Form
+    public partial class Form1 : Form, IDisposable
     {
         private bool blnLangFlg = true;
         private static int intWaitMin = 59;
@@ -169,11 +169,8 @@ namespace timeSignal
         {
             try
             {
-                if (objTask != null)
-                {
-                    objTask = null;
-                }
-
+                objTask = null;
+                tokenSource.Dispose();
                 notifyIcon1.Visible = false;
                 Application.Exit();
             }
@@ -181,22 +178,6 @@ namespace timeSignal
             {
                 ExceptionProcess(ex);
             }
-        }
-        #endregion
-
-        #region "Test Method"
-        /// <summary>
-        /// Test Method
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void NotifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            CultureInfo ci = new CultureInfo(Properties.Settings.Default.CultureInfoJp);
-            Notification.ShowNotify(DateTime.Now.ToString(Properties.Settings.Default.TimeFormatJp, ci),
-                                    DateTime.Now.ToString(Properties.Settings.Default.DateFormatJp),
-                                    Properties.Settings.Default.NotificationAppID,
-                                    Properties.Settings.Default.NotifyIconPath);
         }
         #endregion
     }
