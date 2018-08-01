@@ -3,22 +3,39 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/y190ay52pa2a3lpx?svg=true)](https://ci.appveyor.com/project/mamori017/timesignal)
 [![codecov](https://codecov.io/gh/mamori017/timeSignal/branch/master/graph/badge.svg)](https://codecov.io/gh/mamori017/timeSignal)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/2308f055f9ab457db54288c1c35486fb)](https://www.codacy.com/app/mamori017/timeSignal?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=mamori017/timeSignal&amp;utm_campaign=Badge_Grade)
-![GitHub last commit](https://img.shields.io/github/last-commit/mamori017/timeSignal.svg)
-![GitHub tag](https://img.shields.io/github/tag/mamori017/timeSignal.svg)
+[![CodeFactor](https://www.codefactor.io/repository/github/mamori017/timesignal/badge)](https://www.codefactor.io/repository/github/mamori017/timesignal)
+[![BCH compliance](https://bettercodehub.com/edge/badge/mamori017/timeSignal?branch=master)](https://bettercodehub.com/)
 [![Release](https://img.shields.io/github/release/mamori017/timeSignal.svg)](https://github.com/mamori017/timeSignal/releases/latest)
 [![License](https://img.shields.io/github/license/mamori017/timeSignal.svg)](https://github.com/mamori017/timeSignal/blob/master/LICENSE)
 
 ![timesignal](https://cloud.githubusercontent.com/assets/7507701/21547039/e333e724-ce26-11e6-8014-26aa8ad90928.png)
 
 ## Overview
+
 timeSignal notifies the time signal every hours.
 
 ## Requirement
+
 - .NET Framework 4.5
 - System.Runtime.WindowsRuntime
 - Windows.winmd
+- [mamori017/Common](https://github.com/mamori017/Common)
+  - https://github.com/mamori017/Common.git
+  - Add File As Link.
+
+## Build
+
+|Configuration |Detail |
+|:-----|:-----|
+|Debug | Local build|
+|Release |AppVeyor CI build.|
+
+Configuration difference is Common repository file reference method. 
+
+Check .csproj for the difference.
 
 ## Usage
+
 When timesignal.exe is executed, it notifies time signal.
 
 An icon is displayed on the taskbar while the program is running.
