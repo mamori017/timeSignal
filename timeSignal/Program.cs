@@ -15,7 +15,7 @@ namespace timeSignal
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             new Form1();
-            Common.Process.CheckMultiple(Application.ProductName);
+            Common.Process.ExcludeMultipleStartUp(Application.ProductName);
         }
     }
 }
