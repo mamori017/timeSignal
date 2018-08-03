@@ -6,5 +6,5 @@ build:
 image: Visual Studio 2015
 configuration: Debug
 before_build:
-  nuget restore timeSignal.sln
-  git clone -q --branch=master https://github.com/mamori017/Common.git ..\Common
+  - nuget restore timeSignal.sln
+  - git clone -q --branch=master https://github.com/mamori017/Common.git ..\Common
